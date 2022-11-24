@@ -1,0 +1,6 @@
+.root {
+	background-color: #2a28fb;
+	min-height: 50px;
+	display: flex;
+	padding-left: 40px;
+}
