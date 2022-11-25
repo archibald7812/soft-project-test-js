@@ -7,6 +7,7 @@ export const NavPanel = () => {
 		<div className={classnames(styles.root)}>
 			<Link to='/'>Home</Link>
 			<Link to='/posts'>Posts</Link>
+			<Link to='/albums'>Albums</Link>
 			<Link to='/todos'>Todos</Link>
 		</div>
 	)
