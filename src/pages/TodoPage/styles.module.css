@@ -3,10 +3,6 @@
 	margin: 0 auto;
 }
 
-.section {
-	display: flex;
-}
-
 .title {
 	display: flex;
 	justify-content: center;

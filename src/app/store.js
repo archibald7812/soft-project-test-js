@@ -1,9 +1,14 @@
-import { configureStore } from "@reduxjs/toolkit";
-import todosReducer from '../features/todos/todosSlice'
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { todosSlice } from "../features/todos/todosSlice";
+import { loggerMiddleware } from "./middlewares/logger";
 
+
+const rootReducer = combineReducers({
+    todos: todosSlice.reducer
+});
 
 export const store = configureStore({
-    reducer: {
-        todos: todosReducer,
-    }
+    reducer: rootReducer,
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware().concat([loggerMiddleware]),
 })
