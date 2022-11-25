@@ -1,0 +1,12 @@
+.root {
+	padding: 0 20px;
+}
+
+.section {
+	display: flex;
+	flex-direction: column;
+}
+
+.title {
+	text-align: center;
+}

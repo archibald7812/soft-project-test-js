@@ -1,0 +1,20 @@
+.root {
+	height: 100%;
+	padding: 30px;
+	margin: 0 auto;
+}
+
+.section {
+	display: flex;
+}
+
+.title {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.input {
+	display: flex;
+	justify-content: center;
+}
