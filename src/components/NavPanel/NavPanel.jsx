@@ -1,12 +1,13 @@
 import classnames from 'classnames';
+import { Link } from 'react-router-dom';
 import styles from './styles.module.css'
 
 export const NavPanel = () => {
 	return (
 		<div className={classnames(styles.root)}>
-			<button>Posts</button>
-			<button>Albums</button>
-			<button>Todos</button>
+			<Link to='/'>Home</Link>
+			<Link to='/posts'>Posts</Link>
+			<Link to='/todos'>Todos</Link>
 		</div>
 	)
 }

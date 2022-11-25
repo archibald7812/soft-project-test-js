@@ -20,6 +20,7 @@ export const todosSlice = createSlice({
 			state.map((item) => { if (item.id === action.payload.id) item.completed = true })
 		}
 	}
+
 })
 
 export const { addTodo, deleteTodo, completeTodo } = todosSlice.actions;

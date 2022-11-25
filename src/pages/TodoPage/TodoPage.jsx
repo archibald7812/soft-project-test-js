@@ -1,6 +1,6 @@
 import classnames from 'classnames';
-import { AddTodo } from '../../../components/AddTodo/AddTodo';
-import { TodoSection } from '../../../components/TodoSection/TodoSection';
+import { AddTodo } from '../../components/AddTodo/AddTodo';
+import { TodoSection } from '../../components/TodoSection/TodoSection';
 import styles from './styles.module.css'
 
 export const TodoPage = () => {
