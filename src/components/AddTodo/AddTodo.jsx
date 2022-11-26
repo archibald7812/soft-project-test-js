@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addTodo } from '../../features/todos/todosSlice';
+import { addNewTodo } from '../../features/todos/todosSlice';
 import styles from './styles.module.css'
 
 export const AddTodo = () => {
@@ -19,7 +19,7 @@ export const AddTodo = () => {
 		}
 
 		dispatch(
-			addTodo({
+			addNewTodo({
 				todo: value
 			})
 		);

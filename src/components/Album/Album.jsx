@@ -2,7 +2,8 @@ import classNames from 'classnames';
 import React, { useState } from 'react';
 import styles from './styles.module.css'
 
-export const Album = ({ slides }) => {
+export const Album = ({ slides = [] }) => {
+
 	const [current, setCurrent] = useState(0);
 	const length = slides.length;
 
@@ -29,7 +30,7 @@ export const Album = ({ slides }) => {
 						key={index}
 					>
 						{index === current && (
-							<img src={slide.url} alt='travel image' className={classNames(styles.image)} />
+							<img src={slide.url} alt='color' className={classNames(styles.image)} />
 						)}
 					</div>
 				);

@@ -1,0 +1,16 @@
+.root {
+	display: flex;
+	flex-direction: column;
+	width: 85%;
+	padding: 0 30px;
+}
+
+.section {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.title {
+	text-align: center;
+}

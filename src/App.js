@@ -8,9 +8,18 @@ import { HomePage } from './pages/HomePage/HomePage';
 import { TodoPage } from './pages/TodoPage/TodoPage';
 import { PostsPage } from './pages/PostsPage/PostsPage';
 import { AlbumsPage } from './pages/AlbumsPage/AlbumsPage';
+import { fetchAlbums } from "./features/albums/albumsSlice";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
+export const App = () => {
 
-function App() {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchAlbums())
+  }, [])
+
   return (
     <BrowserRouter>
       <div className={classnames(styles.root)}>
@@ -27,5 +36,3 @@ function App() {
     </BrowserRouter>
   );
 }
-
-export default App;
