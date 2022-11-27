@@ -30,8 +30,10 @@ export const Todo = ({ title, status, id }) => {
 	return (
 		<div className={classnames(styles.root)}>
 			<p className={classnames(styles.title)}>{title}</p>
-			<button className={classnames(styles.button)} onClick={onDelete}>Delete</button>
-			{!status && <button onClick={onDone}>Done!</button>}
+			<div className={classnames(styles.box)}>
+				<button className={classnames(styles.button)} onClick={onDelete}>Delete</button>
+				{!status && <button className={classnames(styles.button)} onClick={onDone}>Done!</button>}
+			</div>
 		</div>
 	)
 }

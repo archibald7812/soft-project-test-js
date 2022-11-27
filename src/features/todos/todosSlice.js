@@ -68,7 +68,6 @@ export const todosSlice = createSlice({
 					console.log(action.payload)
 					return;
 				}
-				console.log(1)
 				state.todos.map((item) => { if (item.id === action.payload.id) item.completed = true })
 			})
 			.addCase(deleteTodo.fulfilled, (state, action) => {
@@ -81,5 +80,7 @@ export const todosSlice = createSlice({
 			})
 	}
 })
+
+export const getTodoById = (state, todoId) => state.todos.todos.filter(item => item.id === todoId)
 
 export default todosSlice.reducer;

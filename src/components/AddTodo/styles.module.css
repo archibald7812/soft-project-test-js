@@ -1,7 +1,14 @@
-.root {
-	height: 100%;
-	padding: 30px;
-	margin: 0 auto;
+.input {
+	font-size: 15px;
+	padding: 5px;
+	margin-right: 10px;
+	border-radius: 5px;
+	border: 2px solid #2a28fb;
+}
+
+.input:focus {
+	border: 2px solid #2a28fb;
+	outline: 0;
 }
 
 .section {
@@ -14,7 +21,18 @@
 	align-items: center;
 }
 
-.input {
+.root {
 	display: flex;
 	justify-content: center;
+}
+
+.button {
+	background-color: #fff;
+	border: 2px solid rgba(42, 40, 251);
+	border-radius: 5px;
+}
+
+.button:hover {
+	background-color: rgba(42, 40, 251);
+	color: white;
 }

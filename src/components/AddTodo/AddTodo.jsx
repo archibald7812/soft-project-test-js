@@ -29,14 +29,18 @@ export const AddTodo = () => {
 
 
 	return (
-		<div className={classnames(styles.input)}>
+		<div className={classnames(styles.root)}>
 			<input
+				className={classnames(styles.input)}
 				type='text'
 				placeholder='Add task...'
 				value={value}
 				onChange={(event) => setValue(event.target.value)}
 			></input>
-			<button onClick={onSubmit}>Add</button>
+			<button
+				className={classnames(styles.button)}
+				onClick={onSubmit}>Add
+			</button>
 		</div>
 	)
 }

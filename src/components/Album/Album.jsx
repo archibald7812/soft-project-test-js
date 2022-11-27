@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import React, { useState } from 'react';
 import styles from './styles.module.css'
+import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 
 export const Album = ({ slides = [] }) => {
 
@@ -21,8 +22,8 @@ export const Album = ({ slides = [] }) => {
 
 	return (
 		<section className={classNames(styles.slider)}>
-			<button className={classNames(styles['left-arrow'])} onClick={prevSlide}>left</button>
-			<button className={classNames(styles['right-arrow'])} onClick={nextSlide}>right</button>
+			<FaAngleLeft className={classNames(styles['left-arrow'])} onClick={prevSlide} />
+			<FaAngleRight className={classNames(styles['right-arrow'])} onClick={nextSlide} />
 			{slides.map((slide, index) => {
 				return (
 					<div

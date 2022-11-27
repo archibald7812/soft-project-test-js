@@ -1,21 +1,14 @@
 import classnames from 'classnames';
 import styles from './styles.module.css'
 import { Todo } from '../Todo/Todo';
-import { useDispatch, useSelector } from "react-redux";
-import { fetchTodos } from '../../features/todos/todosSlice';
-import { useEffect } from 'react';
+import { useSelector } from "react-redux";
 
 export const TodoSection = () => {
-
-	const dispatch = useDispatch()
 
 	const todos = useSelector((state) => {
 		return state.todos.todos;
 	});
 
-	useEffect(() => {
-		dispatch(fetchTodos());
-	}, []);
 
 	return (
 		<div className={classnames(styles.root)}>

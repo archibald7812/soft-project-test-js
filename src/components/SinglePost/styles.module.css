@@ -1,0 +1,51 @@
+.root {
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+}
+
+.title {
+	text-align: center;
+}
+
+.label {
+	font-size: 25px;
+	margin-top: 20px;
+}
+
+.editForm {
+	display: flex;
+	flex-direction: column;
+}
+
+.area {
+	font-size: 20px;
+	padding: 5px;
+	border-radius: 5px;
+	border: 2px solid #2a28fb;
+}
+
+.input {
+	display: block;
+	word-break: break-word;
+}
+
+.area:focus {
+	border: 2px solid #2a28fb;
+	outline: 0;
+}
+
+.button {
+	margin-top: 20px;
+	font-size: 25px;
+	padding: 5px;
+	background-color: #fff;
+	border: 2px solid rgba(42, 40, 251);
+	border-radius: 5px;
+}
+
+.button:hover {
+	background-color: rgba(42, 40, 251);
+	color: white;
+}

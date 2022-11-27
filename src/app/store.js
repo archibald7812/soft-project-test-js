@@ -3,11 +3,15 @@ import { albumsSlice } from "../features/albums/albumsSlice";
 import { todosSlice } from "../features/todos/todosSlice";
 import { loggerMiddleware } from "./middlewares/logger";
 import { photosSlice } from "../features/photos/photosSlice";
+import { postsSlice } from "../features/posts/postsSlice";
+import { commentsSlice } from "../features/comments/sommentsSlice";
 
 const rootReducer = combineReducers({
     todos: todosSlice.reducer,
     albums: albumsSlice.reducer,
-    photos: photosSlice.reducer
+    photos: photosSlice.reducer,
+    posts: postsSlice.reducer,
+    comments: commentsSlice.reducer
 });
 
 export const store = configureStore({
