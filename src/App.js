@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Layout } from './components/Layout/Layout';
 import classnames from 'classnames';
 import styles from './App.module.css'
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 import { HomePage } from './pages/HomePage/HomePage';
 import { TodoPage } from './pages/TodoPage/TodoPage';
 import { PostsPage } from './pages/PostsPage/PostsPage';
@@ -31,7 +31,7 @@ export const App = () => {
   }, [albums])
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <div className={classnames(styles.root)}>
         <Routes>
           <Route path="/" element={<Layout />}>
@@ -46,6 +46,6 @@ export const App = () => {
           </Route>
         </Routes>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
