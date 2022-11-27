@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.f8006bd8.css",
-    "main.js": "/static/js/main.711fcef7.js",
-    "static/media/ApercuMonoProRegular.ttf": "/static/media/ApercuMonoProRegular.c4552c921587f3c75ba3.ttf",
-    "static/media/logo.svg": "/static/media/logo.d9b11a1bf25ff4eae752e75d01f11525.svg",
-    "index.html": "/index.html",
-    "main.f8006bd8.css.map": "/static/css/main.f8006bd8.css.map",
-    "main.711fcef7.js.map": "/static/js/main.711fcef7.js.map"
+    "main.css": "/soft-project-test-js/static/css/main.739e911e.css",
+    "main.js": "/soft-project-test-js/static/js/main.c07a573a.js",
+    "static/media/ApercuMonoProRegular.ttf": "/soft-project-test-js/static/media/ApercuMonoProRegular.c4552c921587f3c75ba3.ttf",
+    "static/media/logo.svg": "/soft-project-test-js/static/media/logo.d9b11a1bf25ff4eae752e75d01f11525.svg",
+    "index.html": "/soft-project-test-js/index.html",
+    "main.739e911e.css.map": "/soft-project-test-js/static/css/main.739e911e.css.map",
+    "main.c07a573a.js.map": "/soft-project-test-js/static/js/main.c07a573a.js.map"
   },
   "entrypoints": [
-    "static/css/main.f8006bd8.css",
-    "static/js/main.711fcef7.js"
+    "static/css/main.739e911e.css",
+    "static/js/main.c07a573a.js"
   ]
 }
