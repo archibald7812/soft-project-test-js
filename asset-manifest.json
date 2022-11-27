@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/soft-project-test-js/static/css/main.739e911e.css",
-    "main.js": "/soft-project-test-js/static/js/main.890b4f4a.js",
+    "main.css": "/soft-project-test-js/static/css/main.638aeff2.css",
+    "main.js": "/soft-project-test-js/static/js/main.5b40cc1b.js",
     "static/media/ApercuMonoProRegular.ttf": "/soft-project-test-js/static/media/ApercuMonoProRegular.c4552c921587f3c75ba3.ttf",
     "static/media/logo.svg": "/soft-project-test-js/static/media/logo.d9b11a1bf25ff4eae752e75d01f11525.svg",
     "index.html": "/soft-project-test-js/index.html",
-    "main.739e911e.css.map": "/soft-project-test-js/static/css/main.739e911e.css.map",
-    "main.890b4f4a.js.map": "/soft-project-test-js/static/js/main.890b4f4a.js.map"
+    "main.638aeff2.css.map": "/soft-project-test-js/static/css/main.638aeff2.css.map",
+    "main.5b40cc1b.js.map": "/soft-project-test-js/static/js/main.5b40cc1b.js.map"
   },
   "entrypoints": [
-    "static/css/main.739e911e.css",
-    "static/js/main.890b4f4a.js"
+    "static/css/main.638aeff2.css",
+    "static/js/main.5b40cc1b.js"
   ]
 }
