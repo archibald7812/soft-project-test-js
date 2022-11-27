@@ -47,5 +47,6 @@
   },
   "devDependencies": {
     "gh-pages": "^4.0.0"
-  }
+  },
+  "homepage": "https://archibald7812.github.io/soft-project-test-js/"
 }
