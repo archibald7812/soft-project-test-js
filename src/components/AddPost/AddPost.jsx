@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addNewPost } from "../../features/posts/postsSlice";
 import classnames from 'classnames';
 import styles from './styles.module.css'
@@ -14,8 +14,11 @@ export const AddPost = () => {
 
 	const onTitleChanged = e => setTitle(e.target.value)
 	const onContentChanged = e => setContent(e.target.value)
+	const onAuthorChanged = e => setUserId(e.target.value)
 
 	const canSave = [title, content].every(Boolean) && addRequestStatus === 'idle';
+
+	const users = useSelector(state => state.users.users)
 
 	const onSavePostClicked = () => {
 		if (canSave) {
@@ -34,6 +37,12 @@ export const AddPost = () => {
 		}
 	}
 
+	const usersOptions = users.map(user => (
+		<option key={user.id} value={user.id}>
+			{user.name}
+		</option>
+	))
+
 	return (
 		<section className={classnames(styles.root)}>
 			<h2 className={classnames(styles.title)}>New Post</h2>
@@ -42,22 +51,22 @@ export const AddPost = () => {
 				<input
 					className={classnames(styles.area, styles.input)}
 					type="text"
-					id="postTitle"
-					name="postTitle"
 					value={title}
 					onChange={onTitleChanged}
 				/>
+				<label className={classnames(styles.label)}>User:</label>
+				<select className={classnames(styles.area, styles.input)} value={userId} onChange={onAuthorChanged}>
+					<option value=""></option>
+					{usersOptions}
+				</select>
 				<label className={classnames(styles.label)}>Content:</label>
 				<textarea
 					className={classnames(styles.area, styles.input)}
-					id="postContent"
-					name="postContent"
 					value={content}
 					onChange={onContentChanged}
 				/>
 				<button
 					className={classnames(styles.button)}
-					type="button"
 					onClick={onSavePostClicked}
 					disabled={!canSave}
 				>Save Post</button>
