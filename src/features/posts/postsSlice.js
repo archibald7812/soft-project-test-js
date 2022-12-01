@@ -1,59 +1,28 @@
-import { createSlice, nanoid, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-
-const POSTS_URL = `https://jsonplaceholder.typicode.com/posts`;
+import { createSlice } from "@reduxjs/toolkit";
+import { loadingStatuses } from "../../constants/loadingStatuses/loadingStatuses";
+import { addNewPost, deletePost, fetchPosts, updatePost } from "./actions";
 
 const initialState = {
 	posts: [],
-	status: 'idle',
+	status: loadingStatuses.IDLE,
 	error: null
 }
-
-export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
-	const response = await axios.get(POSTS_URL)
-	return response.data
-})
-
-export const addNewPost = createAsyncThunk('posts/addNewPost', async (initialPost) => {
-	const response = await axios.post(POSTS_URL, initialPost)
-	return response.data
-})
-
-export const updatePost = createAsyncThunk('posts/updatePost', async (initialPost) => {
-	const { id } = initialPost;
-	try {
-		const response = await axios.put(`${POSTS_URL}/${id}`, initialPost)
-		return response.data
-	} catch (err) {
-		return initialPost;
-	}
-})
-
-export const deletePost = createAsyncThunk('posts/deletePost', async (initialPost) => {
-	const { id } = initialPost;
-	try {
-		const response = await axios.delete(`${POSTS_URL}/${id}`)
-		if (response?.status === 200) return initialPost;
-		return `${response?.status}: ${response?.statusText}`;
-	} catch (err) {
-		return err.message;
-	}
-})
 
 export const postsSlice = createSlice({
 	name: 'posts',
 	initialState,
 	extraReducers(builder) {
 		builder
-			.addCase(fetchPosts.pending, (state, action) => {
-				state.status = 'loading'
+			.addCase(fetchPosts.pending, (state) => {
+				state.status = loadingStatuses.LOADING
 			})
 			.addCase(fetchPosts.fulfilled, (state, { payload }) => {
-				state.status = 'succeeded'
-				state.posts = state.posts.concat(payload)
+				state.status = loadingStatuses.SUCCESS
+				if (state.posts.length) return
+				state.posts = payload
 			})
 			.addCase(fetchPosts.rejected, (state, action) => {
-				state.status = 'failed'
+				state.status = loadingStatuses.FAIL
 				state.error = action.error.message
 			})
 			.addCase(addNewPost.fulfilled, (state, action) => {
@@ -68,7 +37,6 @@ export const postsSlice = createSlice({
 			})
 			.addCase(updatePost.fulfilled, (state, action) => {
 				if (!action.payload?.id) {
-					console.log('Update could not complete')
 					console.log(action.payload)
 					return;
 				}
@@ -78,7 +46,6 @@ export const postsSlice = createSlice({
 			})
 			.addCase(deletePost.fulfilled, (state, action) => {
 				if (!action.payload?.id) {
-					console.log('Delete could not complete')
 					console.log(action.payload)
 					return;
 				}
@@ -88,14 +55,5 @@ export const postsSlice = createSlice({
 			})
 	}
 })
-
-export const selectAllPosts = (state) => state.posts.posts;
-export const getPostsStatus = (state) => state.posts.status;
-export const getPostsError = (state) => state.posts.error;
-
-export const selectPostById = (state, postId) =>
-	state.posts.posts.find(post => post.id === postId);
-
-export const { postAdded, reactionAdded } = postsSlice.actions
 
 export default postsSlice.reducer

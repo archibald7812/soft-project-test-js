@@ -2,7 +2,7 @@ import { Post } from "../Post/Post"
 import classnames from 'classnames';
 import styles from './styles.module.css'
 import { useSelector } from "react-redux";
-import { selectAllPosts } from "../../features/posts/postsSlice";
+import { selectAllPosts } from "../../features/posts/selectors";
 
 export const Posts = () => {
 

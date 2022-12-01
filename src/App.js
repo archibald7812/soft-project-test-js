@@ -39,7 +39,7 @@ export const App = () => {
             <Route path='posts'>
               <Route index element={<PostsPage />}></Route>
               <Route path='edit/:postId' element={<SinglePost />}></Route>
-              <Route path='add' element={<AddPost />}></Route>
+              <Route path='create' element={<AddPost />}></Route>
             </Route>
             <Route path='albums' element={<AlbumsPage />}></Route>
             <Route path='todos' element={<TodoPage />}></Route>

@@ -1,17 +1,15 @@
 import classnames from 'classnames';
 import styles from './styles.module.css'
 import { useDispatch, useSelector } from "react-redux";
-import { deletePost } from "../../features/posts/postsSlice";
 import { Link } from "react-router-dom";
 import { Comments } from '../Comments/Comments';
 import { useState } from 'react';
 import { selectUserNameById } from '../../features/users/usersSlice';
-
+import { deletePost } from '../../features/posts/actions';
 
 export const Post = ({ postId, title = '', userId = 1, body = '' }) => {
 
 	const user = useSelector((state) => selectUserNameById(state, userId))
-	console.log(user)
 	const dispatch = useDispatch()
 
 	const comments = useSelector(state => state.comments.comments)
@@ -34,6 +32,8 @@ export const Post = ({ postId, title = '', userId = 1, body = '' }) => {
 		}))
 	}
 
+	let count = 1
+
 	return (
 		<div className={classnames(styles.root)}>
 			<Link to={`edit/${postId}`} className={classnames(styles.title)}>{title.toUpperCase()}</Link>
@@ -44,7 +44,7 @@ export const Post = ({ postId, title = '', userId = 1, body = '' }) => {
 				<button className={classnames(styles.button)} onClick={onDelete}>Delete Post</button>
 				<div>Author: {user.name}</div>
 			</div>
-			<Comments active={active} comments={currentPostComments} />
+			<Comments active={active} comments={currentPostComments} depth={count} />
 		</div>
 	)
 }

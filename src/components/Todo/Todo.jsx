@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { deleteTodo, completeTodo } from '../../features/todos/todosSlice';
 import styles from './styles.module.css'
 
-export const Todo = ({ title, status, id }) => {
+export const Todo = ({ title, id, status, index }) => {
 
 	const dispatch = useDispatch()
 
@@ -12,27 +12,17 @@ export const Todo = ({ title, status, id }) => {
 
 		dispatch(
 			deleteTodo({
-				id: id
-			})
-		);
-	};
-
-	const onDone = (event) => {
-		event.preventDefault();
-
-		dispatch(
-			completeTodo({
-				id: id
+				id: id,
+				completed: status
 			})
 		);
 	};
 
 	return (
 		<div className={classnames(styles.root)}>
-			<p className={classnames(styles.title)}>{title}</p>
+			<p className={classnames(styles.title)}>{index + 1}. {title}</p>
 			<div className={classnames(styles.box)}>
 				<button className={classnames(styles.button)} onClick={onDelete}>Delete</button>
-				{!status && <button className={classnames(styles.button)} onClick={onDone}>Done!</button>}
 			</div>
 		</div>
 	)

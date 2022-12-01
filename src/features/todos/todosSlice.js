@@ -6,6 +6,7 @@ const TODOS_URL = 'https://jsonplaceholder.typicode.com/todos';
 
 const initialState = {
 	todos: [],
+	completedTodos: [],
 	status: 'idle',
 	error: null
 }
@@ -40,6 +41,14 @@ export const completeTodo = createAsyncThunk('todos/completeTodo', async (initia
 export const todosSlice = createSlice({
 	name: 'todos',
 	initialState: initialState,
+	reducers: {
+		changeTodosList: (state, action) => {
+			state.todos = [...action.payload.todos]
+		},
+		changeCompletedTodosList: (state, action) => {
+			state.completedTodos = [...action.payload.completedTodos]
+		},
+	},
 	extraReducers(builder) {
 		builder
 			.addCase(fetchTodos.pending, (state) => {
@@ -48,7 +57,8 @@ export const todosSlice = createSlice({
 			.addCase(fetchTodos.fulfilled, (state, { payload }) => {
 				state.status = 'succeeded'
 
-				state.todos = payload
+				state.todos = payload.filter(todo => todo.completed === false)
+				state.completedTodos = payload.filter(todo => todo.completed === true)
 			})
 			.addCase(fetchTodos.rejected, (state, action) => {
 				state.status = 'failed'
@@ -62,21 +72,15 @@ export const todosSlice = createSlice({
 				}
 				state.todos.push(newTodo);
 			})
-			.addCase(completeTodo.fulfilled, (state, action) => {
-				if (!action.payload?.id) {
-					console.log('Update could not complete')
-					console.log(action.payload)
-					return;
-				}
-				state.todos.map((item) => { if (item.id === action.payload.id) item.completed = true })
-			})
 			.addCase(deleteTodo.fulfilled, (state, action) => {
 				if (!action.payload?.id) {
 					console.log('Delete could not complete')
 					console.log(action.payload)
 					return;
 				}
-				state.todos = state.todos.filter((item) => item.id !== action.payload.id);
+				!action.payload.completed ?
+					state.todos = state.todos.filter((item) => item.id !== action.payload.id) :
+					state.completedTodos = state.completedTodos.filter((item) => item.id !== action.payload.id)
 			})
 	}
 })

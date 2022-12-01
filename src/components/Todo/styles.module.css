@@ -11,15 +11,15 @@
 
 .button {
 	background-color: #fff;
-	border: 2px solid rgba(42, 40, 251);
+	border: 2px solid white;
 	border-radius: 5px;
 	margin-left: 5px;
 	height: 25px;
 }
 
 .button:hover {
-	background-color: rgba(42, 40, 251);
-	color: white;
+	background-color: #fff;
+	border: 2px solid rgba(42, 40, 251);
 }
 
 .title {

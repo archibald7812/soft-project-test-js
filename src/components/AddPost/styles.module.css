@@ -6,7 +6,7 @@
 }
 
 .title {
-	text-align: center;
+	margin-left: 33%;
 }
 
 .label {
@@ -48,4 +48,17 @@
 .button:hover {
 	background-color: rgba(42, 40, 251);
 	color: white;
+}
+
+.topPanel {
+	display: flex;
+	justify-content: left;
+	align-items: center;
+}
+
+.back {
+	text-decoration: none;
+	font-size: 20px;
+	color: black;
+	font-weight: bold;
 }
