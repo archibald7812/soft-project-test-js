@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { loadingStatuses } from "../../constants/loadingStatuses/loadingStatuses";
-import { addNewTodo, deleteTodo, fetchTodos, updateTodo } from "./actions";
+import { addNewTodo, deleteTodo, fetchTodos } from "./actions";
 
 const initialState = {
 	todos: [],

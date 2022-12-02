@@ -40,6 +40,7 @@ export const TodoPage = () => {
 
 		if (source.droppableId === 'TodoList') {
 			droppableItem = activeList[source.index];
+
 			activeList.splice(source.index, 1);
 		} else {
 
