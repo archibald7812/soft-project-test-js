@@ -1,18 +1,11 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-
-const ALBUMS_URL = 'https://jsonplaceholder.typicode.com/albums';
-
+import { createSlice } from "@reduxjs/toolkit";
+import { loadingStatuses } from "../../constants/loadingStatuses/loadingStatuses";
+import { fetchAlbums } from "./actions";
 
 const initialState = {
 	albums: [],
-	status: 'idle',
+	status: loadingStatuses.IDLE,
 }
-
-export const fetchAlbums = createAsyncThunk('albums/fetchAlbums', async () => {
-	const result = await axios.get(ALBUMS_URL)
-	return result.data
-})
 
 export const albumsSlice = createSlice({
 	name: 'albums',
@@ -20,14 +13,17 @@ export const albumsSlice = createSlice({
 	extraReducers(builder) {
 		builder
 			.addCase(fetchAlbums.pending, (state) => {
-				state.status = 'loading'
+				state.status = loadingStatuses.LOADING
 			})
 			.addCase(fetchAlbums.fulfilled, (state, { payload }) => {
-				state.status = 'succeeded'
+				state.status = loadingStatuses.SUCCESS
+
+				if (state.albums.length) return
+
 				state.albums = payload
 			})
 			.addCase(fetchAlbums.rejected, (state, action) => {
-				state.status = 'failed'
+				state.status = loadingStatuses.FAIL
 				state.error = action.error.message
 			})
 	}

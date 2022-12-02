@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addNewTodo } from '../../features/todos/todosSlice';
+import { addNewTodo } from '../../features/todos/actions';
 import styles from './styles.module.css'
 
 export const AddTodo = () => {

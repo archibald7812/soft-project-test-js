@@ -4,6 +4,7 @@ import styles from './styles.module.css'
 import { useSelector } from "react-redux";
 import { selectAllPosts } from "../../features/posts/selectors";
 
+
 export const Posts = () => {
 
 	const posts = useSelector(selectAllPosts)

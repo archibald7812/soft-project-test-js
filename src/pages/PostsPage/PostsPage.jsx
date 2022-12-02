@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchPosts } from "../../features/posts/actions";
+import { fetchUsers } from "../../features/users/actions";
 
 export const PostsPage = () => {
 
@@ -14,6 +15,14 @@ export const PostsPage = () => {
 	useEffect(() => {
 		dispatch(fetchPosts());
 	}, [])
+
+	useEffect(() => {
+		dispatch(fetchUsers());
+	}, [])
+
+	/* 	useEffect(() => {
+			dispatch(fetchComments());
+		}, []) */
 
 	return (
 		<div className={classnames(styles.root)}>

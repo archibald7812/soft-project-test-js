@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import { useDispatch } from 'react-redux';
-import { deleteTodo, completeTodo } from '../../features/todos/todosSlice';
+import { deleteTodo } from '../../features/todos/actions';
 import styles from './styles.module.css'
 
 export const Todo = ({ title, id, status, index }) => {

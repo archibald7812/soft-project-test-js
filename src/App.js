@@ -9,27 +9,8 @@ import { PostsPage } from './pages/PostsPage/PostsPage';
 import { AlbumsPage } from './pages/AlbumsPage/AlbumsPage';
 import { SinglePost } from './components/SinglePost/SinglePost';
 import { AddPost } from './components/AddPost/AddPost';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchPhotos } from './features/photos/photosSlice';
-
 
 export const App = () => {
-
-  const dispatch = useDispatch()
-  const albums = useSelector((state) => {
-    return state.albums.albums
-  })
-
-  const arrayOfUrls = []
-
-  for (let album of albums) {
-    arrayOfUrls.push(`https://jsonplaceholder.typicode.com/albums/${album.id}/photos`)
-  }
-
-  useEffect(() => {
-    dispatch(fetchPhotos(arrayOfUrls))
-  }, [albums])
-
   return (
     <HashRouter>
       <div className={classnames(styles.root)}>

@@ -16,10 +16,10 @@ export const postsSlice = createSlice({
 			.addCase(fetchPosts.pending, (state) => {
 				state.status = loadingStatuses.LOADING
 			})
-			.addCase(fetchPosts.fulfilled, (state, { payload }) => {
+			.addCase(fetchPosts.fulfilled, (state, action) => {
 				state.status = loadingStatuses.SUCCESS
 				if (state.posts.length) return
-				state.posts = payload
+				state.posts = action.payload
 			})
 			.addCase(fetchPosts.rejected, (state, action) => {
 				state.status = loadingStatuses.FAIL

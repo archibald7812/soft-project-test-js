@@ -3,14 +3,20 @@ import { useDispatch } from 'react-redux';
 import { AddTodo } from '../../components/AddTodo/AddTodo';
 import { TodoSection } from '../../components/TodoSection/TodoSection';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
-
 import styles from './styles.module.css'
 import { useSelector } from 'react-redux';
 import { todosSlice } from '../../features/todos/todosSlice';
+import { useEffect } from 'react';
+import { fetchTodos, updateTodo } from '../../features/todos/actions';
 
 export const TodoPage = () => {
 
 	const dispatch = useDispatch()
+
+	useEffect(() => {
+		dispatch(fetchTodos())
+	}, [])
+
 	const { changeTodosList, changeCompletedTodosList } = todosSlice.actions
 	const todos = useSelector(state => state.todos.todos)
 	const completedTodos = useSelector(state => state.todos.completedTodos)
@@ -28,6 +34,7 @@ export const TodoPage = () => {
 		}
 
 		let droppableItem;
+		let item;
 		const activeList = [...todos];
 		const completeList = [...completedTodos];
 
@@ -41,17 +48,21 @@ export const TodoPage = () => {
 		}
 
 		if (destination.droppableId === 'TodoList') {
-			const item = { ...droppableItem }
+			item = { ...droppableItem }
 			item.completed = false;
 			activeList.splice(destination.index, 0, item);
 		} else {
-			const item = { ...droppableItem }
+			item = { ...droppableItem }
 			item.completed = true;
 			completeList.splice(destination.index, 0, item);
 		}
 
 		dispatch(changeTodosList({ todos: activeList }))
 		dispatch(changeCompletedTodosList({ completedTodos: completeList }))
+
+		dispatch(updateTodo({
+			initialTodo: item
+		}))
 	}
 
 	return (

@@ -1,20 +1,11 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSlice } from "@reduxjs/toolkit";
+import { loadingStatuses } from "../../constants/loadingStatuses/loadingStatuses";
+import { fetchPhotos } from "./actions";
 
 const initialState = {
 	photos: [],
-	status: 'idle',
+	status: loadingStatuses.IDLE,
 }
-
-export const fetchPhotos = createAsyncThunk('albums/fetchPhotos', async (array) => {
-	const arrayOfaxios = []
-	array.forEach(element => {
-		arrayOfaxios.push(axios.get(element))
-	});
-	const result = await Promise.all(arrayOfaxios)
-
-	return result.map(item => item.data)
-})
 
 export const photosSlice = createSlice({
 	name: 'photos',
@@ -22,18 +13,20 @@ export const photosSlice = createSlice({
 	extraReducers(builder) {
 		builder
 			.addCase(fetchPhotos.pending, (state) => {
-				state.status = 'loading'
+				state.status = loadingStatuses.LOADING
 			})
-			.addCase(fetchPhotos.fulfilled, (state, { payload }) => {
-				state.status = 'succeeded'
-				state.photos = payload
+			.addCase(fetchPhotos.fulfilled, (state, action) => {
+				state.status = loadingStatuses.SUCCESS
+
+				if (state.photos.length) return
+
+				state.photos = action.payload
 			})
 			.addCase(fetchPhotos.rejected, (state, action) => {
-				state.status = 'failed'
+				state.status = loadingStatuses.FAIL
 				state.error = action.error.message
 			})
 	}
-
 })
 
 export default photosSlice.reducer;

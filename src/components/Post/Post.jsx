@@ -4,19 +4,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Comments } from '../Comments/Comments';
 import { useState } from 'react';
-import { selectUserNameById } from '../../features/users/usersSlice';
+import { selectUserNameById } from '../../features/users/selectors';
 import { deletePost } from '../../features/posts/actions';
+import { selectCommentByPostId } from '../../features/comments/selectors';
 
 export const Post = ({ postId, title = '', userId = 1, body = '' }) => {
 
-	const user = useSelector((state) => selectUserNameById(state, userId))
 	const dispatch = useDispatch()
-
-	const comments = useSelector(state => state.comments.comments)
 
 	const [active, setActive] = useState(false)
 
-	const currentPostComments = comments.filter(item => item.postId === postId)
+	const user = useSelector((state) => selectUserNameById(state, userId))
 
 	const onComment = (event) => {
 		event.preventDefault()
@@ -39,12 +37,12 @@ export const Post = ({ postId, title = '', userId = 1, body = '' }) => {
 			<Link to={`edit/${postId}`} className={classnames(styles.title)}>{title.toUpperCase()}</Link>
 			<p className={classnames(styles.body)}>Text: {body}</p>
 			<div className={classnames(styles.bottom)}>
-				<button className={classnames(styles.button)} onClick={onComment}>Comments ({currentPostComments.length})</button>
+				<button className={classnames(styles.button)} onClick={onComment}>Comments</button>
 				<Link to={`edit/${postId}`}><button className={classnames(styles.button)}>Edit post</button></Link>
 				<button className={classnames(styles.button)} onClick={onDelete}>Delete Post</button>
-				<div>Author: {user.name}</div>
+				<div>Author: {user?.name}</div>
 			</div>
-			<Comments active={active} comments={currentPostComments} depth={count} />
+			{active ? <Comments postId={postId} active={active} depth={count} /> : null}
 		</div>
 	)
 }

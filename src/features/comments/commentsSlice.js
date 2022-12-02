@@ -1,30 +1,27 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-
-const COMMENTS_URL = `https://jsonplaceholder.typicode.com/comments`;
+import { createSlice } from "@reduxjs/toolkit";
+import { loadingStatuses } from "../../constants/loadingStatuses/loadingStatuses";
+import { fetchComments } from "./actions";
 
 const initialState = {
 	comments: [],
-	status: 'idle',
+	status: loadingStatuses.IDLE,
 	error: null
 }
-
-export const fetchComments = createAsyncThunk('comments/fetchComments', async () => {
-	const response = await axios.get(COMMENTS_URL)
-	return response.data
-})
 
 export const commentsSlice = createSlice({
 	name: 'comments',
 	initialState: initialState,
 	extraReducers(builder) {
 		builder
-			.addCase(fetchComments.pending, (state, action) => {
+			.addCase(fetchComments.pending, (state) => {
 				state.status = 'loading'
 			})
-			.addCase(fetchComments.fulfilled, (state, { payload }) => {
+			.addCase(fetchComments.fulfilled, (state, action) => {
 				state.status = 'succeeded'
-				state.comments = state.comments.concat(payload)
+				if (state.comments.length && state.comments.find(comment => comment.postId === action.payload)) {
+					return
+				}
+				state.comments = state.comments.concat(action.payload)
 			})
 			.addCase(fetchComments.rejected, (state, action) => {
 				state.status = 'failed'
@@ -32,9 +29,5 @@ export const commentsSlice = createSlice({
 			})
 	}
 })
-
-export const selectCommentById = (state, commentId) => {
-	state.comments.comments.find(comment => comment.id === commentId)
-};
 
 export default commentsSlice.reducer
